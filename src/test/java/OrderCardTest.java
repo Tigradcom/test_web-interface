@@ -1,3 +1,4 @@
+import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -13,8 +14,12 @@ public class OrderCardTest {
     private static WebDriver driver;
 
     @BeforeAll
-    static void setUpAll() {
-        System.setProperty("webdriver.chrome.driver", "./driver/chromedriver.exe");
+    public static void setupAll() {
+        WebDriverManager.chromedriver().setup();
+    }
+
+    @BeforeEach
+    void setUp() {
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--disable-dev-shm-usage");
         options.addArguments("--no-sandbox");
@@ -22,17 +27,12 @@ public class OrderCardTest {
         driver = new ChromeDriver(options);
     }
 
-    @BeforeEach
-    void setUp() {
-        driver = new ChromeDriver();
-    }
 
     @AfterEach
     void tearDown() {
         driver.quit();
         driver = null;
     }
-
 
 
     @Test
@@ -55,7 +55,7 @@ public class OrderCardTest {
 //        driver.findElement(By.cssSelector("[data-test-id='agreement']")).click();
 //        driver.findElement(By.className("button__text")).click();
 //        String expected = "Телефон указан неверно. Должно быть 11 цифр, например, +79012345678.";
-//        String actual = driver.findElement(By.cssSelector("[data-test-id='phone'].input_invalid .input_sub")).getText();
+//        String actual = driver.findElement(By.cssSelector("[data-test-id='name'].input_invalid .input__sub")).getText().trim();
 //        assertEquals(expected, actual);
 //    }
 
