@@ -5,15 +5,21 @@ import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class OrderCardTest {
-    private WebDriver driver;
+    private static WebDriver driver;
 
     @BeforeAll
     static void setUpAll() {
         System.setProperty("webdriver.chrome.driver", "./driver/chromedriver.exe");
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("--disable-dev-shm-usage");
+        options.addArguments("--no-sandbox");
+        options.addArguments("--headless");
+        driver = new ChromeDriver(options);
     }
 
     @BeforeEach
@@ -26,6 +32,8 @@ public class OrderCardTest {
         driver.quit();
         driver = null;
     }
+
+
 
     @Test
     void shouldTest() {
@@ -50,6 +58,5 @@ public class OrderCardTest {
 //        String actual = driver.findElement(By.cssSelector("[data-test-id='phone'].input_invalid .input_sub")).getText();
 //        assertEquals(expected, actual);
 //    }
-
 
 }
