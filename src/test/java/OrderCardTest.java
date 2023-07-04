@@ -8,15 +8,13 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
-
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class OrderCardTest {
-    private static WebDriver driver;
+    private WebDriver driver;
 
     @BeforeAll
-    public static void setupAll() {
+    static void setupAll() {
         WebDriverManager.chromedriver().setup();
     }
 
@@ -27,6 +25,7 @@ public class OrderCardTest {
         options.addArguments("--no-sandbox");
         options.addArguments("--headless");
         driver = new ChromeDriver(options);
+        driver.get("http://localhost:9999");
     }
 
     @AfterEach
