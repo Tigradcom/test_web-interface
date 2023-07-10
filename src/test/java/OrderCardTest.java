@@ -57,7 +57,7 @@ public class OrderCardTest {
         String actual = driver.findElement(By.cssSelector("[data-test-id='name'].input_invalid .input__sub")).getText().trim();
         assertEquals(expected, actual);
     }
-    
+
 
     @Test
     void invalidPhone() {
